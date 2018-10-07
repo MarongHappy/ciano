@@ -16,8 +16,6 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - libstdc++-5-dev
-      - libjson-glib-dev
-      - libgda-5.0-dev
 
 cache:
   directories:
@@ -33,6 +31,7 @@ install:
 
 script:
   - houston ci
+    --distribution $DIST
 
 branches:
   only:

@@ -167,7 +167,7 @@ namespace Ciano.Views {
                         //this.conversion_list.add_archive ("media-playback-pause-symbolic", builder.get_archive ());
                         //this.conversion_list.add_archive ("process-completed", builder.get_archive ());
 
-                        this.action 
+                       // this.action 
                         var file         = File.new_for_uri (uri);
                         int index        = file.get_basename ().last_index_of("/");
                         string name      = file.get_basename ().substring(index + 1, -1);

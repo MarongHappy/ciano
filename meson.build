@@ -27,12 +27,12 @@ c_args = [
 subdir('data')
 subdir('po')
 subdir('src')
-subdir('vendor/ffmpeg-wrapper')
+subdir('vendor/ffmpeg-cli-wrapper')
 
 executable('com.github.robertsanseries.ciano',
     sources,
     gresource,
-    robertsanseries_ffmpeg_wrapper_files,
+    robertsanseries_ffmpeg_cli_wrapper_files,
     c_args: c_args,
     dependencies :[
         dependency('granite'),

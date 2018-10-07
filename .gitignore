@@ -1,12 +1,10 @@
 .flatpak-builder/*
+.com.github.robertsanseries.ciano.json
+
 app-dir/*
 build/*
 core/*
-debian/build/*
-debian/com.github.robertsanseries.ciano.debhelper.log
-debian/com.github.robertsanseries.ciano.substvars
-debian/com.github.robertsanseries.ciano/
-debian/debhelper-build-stamp
-debian/files
+debian/*
 language/*
-.com.github.robertsanseries.ciano.json
+com.github.robertsanseries.ciano.json
+elementary-theme.patch

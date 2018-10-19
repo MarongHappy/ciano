@@ -35,12 +35,12 @@ executable('com.github.robertsanseries.ciano',
     robertsanseries_ffmpeg_cli_wrapper_files,
     c_args: c_args,
     dependencies :[
-        dependency('granite'),
         dependency('gobject-2.0'),
-        dependency('gtk+-3.0'),
         dependency('glib-2.0'),
-        dependency('json-glib-1.0'),
-        dependency('libgda-5.0')
+        dependency('gtk+-3.0'),
+        dependency('granite'),        
+        dependency('libgda-5.0'),
+        dependency('json-glib-1.0')
     ],
     install : true
 )

@@ -20,6 +20,9 @@
 @define-color colorPrimary #DEDEDE;
 @define-color textColorPrimary shade (@text_color, 0.9);
 @define-color selected_bg_color #3d9bda;
+@define-color color_ciano #00CAFF; 
+@define-color color_elementary #DEDEDE; 
+@define-color color_dark #2F373A; 
 
 .circular {
     padding-left: 5px;

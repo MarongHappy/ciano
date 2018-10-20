@@ -66,8 +66,8 @@ namespace Ciano.Widgets {
             var button_color_elementary = new Gtk.Button ();
             button_color_elementary.halign = Gtk.Align.CENTER;
             button_color_elementary.tooltip_text = _("elementary");
-            button_color_elementary.height_request = 25;
-            button_color_elementary.width_request = 25;
+            button_color_elementary.height_request = 32;
+            button_color_elementary.width_request = 32;
 
             var button_color_elementary_context = button_color_elementary.get_style_context ();
             button_color_elementary_context.add_class ("button-theme");
@@ -76,8 +76,8 @@ namespace Ciano.Widgets {
             var button_color_ciano = new Gtk.Button ();
             button_color_ciano.halign = Gtk.Align.CENTER;
             button_color_ciano.tooltip_text = _("ciano");
-            button_color_ciano.height_request = 25;
-            button_color_ciano.width_request = 25;
+            button_color_ciano.height_request = 32;
+            button_color_ciano.width_request = 32;
 
             var button_color_ciano_context = button_color_ciano.get_style_context ();
             button_color_ciano_context.add_class ("button-theme");
@@ -86,55 +86,60 @@ namespace Ciano.Widgets {
             var button_color_dark = new Gtk.Button ();
             button_color_dark.halign = Gtk.Align.CENTER;
             button_color_dark.tooltip_text = _("dark");
-            button_color_dark.height_request = 25;
-            button_color_dark.width_request = 25;
+            button_color_dark.height_request = 32;
+            button_color_dark.width_request = 32;
 
             var button_color_dark_context = button_color_dark.get_style_context ();
             button_color_dark_context.add_class ("button-theme");
             button_color_dark_context.add_class ("theme-dark");
 
-            var box_color = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+            var box_color = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             box_color.pack_start (button_color_elementary, true, true, 0);
             box_color.pack_start (button_color_ciano, true, true, 0);
             box_color.pack_start (button_color_dark, true, true, 0);
-            box_color.width_request = 150;
-            box_color.margin_top = 2;
+            box_color.width_request = 200;
+            box_color.margin_top = 10;
             box_color.margin_bottom = 6;
 
             var focusmode_button = new Gtk.ToggleButton.with_label ((_("Focus Mode")));
             focusmode_button.set_image (new Gtk.Image.from_icon_name ("zoom-fit-best-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
             focusmode_button.set_always_show_image (true);
             focusmode_button.tooltip_text = _("Enter focus mode");
+            focusmode_button.margin_left = 8;
+            focusmode_button.margin_right = 8;
 
             var item_preferences = new Gtk.ModelButton ();
             item_preferences.text = (_("Preferences"));
             item_preferences.activate.connect(() => { icon_settings_clicked (); });
 
+            var item_preferences_context = item_preferences.get_style_context ();
+            item_preferences_context.add_class ("menuitem");
+
             var item_about = new Gtk.ModelButton ();
             item_about.text = (_("About"));
             item_about.activate.connect(() => { icon_about_clicked (); });
 
-            /* Gtk.MenuItem item_preferences = new Gtk.MenuItem.with_label (_("Preferences"));
-            item_preferences.activate.connect(() => { icon_settings_clicked (); });*/
+            var item_about_context = item_about.get_style_context ();
+            item_about_context.add_class ("menuitem");
 
-            /*Gtk.MenuItem item_about = new Gtk.MenuItem.with_label (_("About"));
-            item_about.activate.connect(() => { icon_about_clicked (); });*/
+            var menu_separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
+            menu_separator.margin_top = 6;
 
             var menu_grid = new Gtk.Grid ();
-            menu_grid.margin = 6;
+            menu_grid.margin_top = 10;
+            menu_grid.margin_bottom = 5;
             menu_grid.column_spacing = 12;
-            menu_grid.width_request = 150;
+            menu_grid.width_request = 170;
             menu_grid.orientation = Gtk.Orientation.VERTICAL;
+            menu_grid.add (focusmode_button);
             menu_grid.add (box_color);
-            //menu_grid.add (focusmode_button);
-            menu_grid.add (new Gtk.SeparatorMenuItem());
+            menu_grid.add (menu_separator);
             menu_grid.add (item_preferences);
             menu_grid.add (item_about);
             menu_grid.show_all ();
 
             var style_popover = new Gtk.Popover (null);
             style_popover.add (menu_grid);
-            
 
             this.settings = new Gtk.MenuButton ();
             this.settings.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));

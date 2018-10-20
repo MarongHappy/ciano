@@ -21,8 +21,8 @@
 @define-color textColorPrimary #A5ABAA;
 @define-color selected_bg_color #37C8AB;
 @define-color color_ciano #00CAFF; 
-@define-color color_elementary #DEDEDE; 
-@define-color color_dark #2F373A; 
+@define-color color_elementary #FFFFFF; 
+@define-color color_dark #252E32; 
 
 .circular {
     padding-left: 5px;
@@ -36,24 +36,16 @@
 }
 
 .button-theme,
+.button-theme:hover,
 .button-theme:active {
 	border-radius: 50px;
-	border-color: alpha (#000, 0.3);
-    box-shadow:
-        inset 0 1px 0 0 alpha (@inset_dark_color, 0.7),
-        inset 0 0 0 1px alpha (@inset_dark_color, 0.3),
-        0 1px 0 0 alpha (@bg_highlight_color, 0.3);
-    padding: 10px;
+    box-shadow: 
+        0px 1px 0px rgba(0, 0, 0, 0.3) inset, 
+        0px 1px 0px rgba(0, 0, 0, 0.3);
 }
 
-.button-theme:hover {
-	border-color: @inset_dark_color;
-    box-shadow:
-        inset 0 1px 0 0 alpha (@inset_dark_color, 0.7),
-        inset 0 0 0 1px alpha (@inset_dark_color, 0.3),
-        inset 0 0 0 1px alpha (@bg_highlight_color, 0.05),
-        0 1px 0 0 alpha (@bg_highlight_color, 0.3),
-        0 0 0 1px alpha (@inset_dark_color, 0.3);
+.button-theme:focus {
+    border-color: @colorAccent;
 }
 
 .theme-ciano {

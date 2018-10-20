@@ -97,6 +97,7 @@ namespace Ciano.Widgets {
             box_color.pack_start (button_color_elementary, true, true, 0);
             box_color.pack_start (button_color_ciano, true, true, 0);
             box_color.pack_start (button_color_dark, true, true, 0);
+            box_color.width_request = 150;
             box_color.margin_top = 2;
             box_color.margin_bottom = 6;
 
@@ -122,6 +123,7 @@ namespace Ciano.Widgets {
             var menu_grid = new Gtk.Grid ();
             menu_grid.margin = 6;
             menu_grid.column_spacing = 12;
+            menu_grid.width_request = 150;
             menu_grid.orientation = Gtk.Orientation.VERTICAL;
             menu_grid.add (box_color);
             //menu_grid.add (focusmode_button);

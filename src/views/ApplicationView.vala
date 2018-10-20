@@ -116,7 +116,7 @@ namespace Ciano.Views {
                     break;
                 case 1:
                     gtk_settings.gtk_application_prefer_dark_theme = false;
-                    css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/default.css");
+                    css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/ciano.css");
                     break;
                 case 2:
                     gtk_settings.gtk_application_prefer_dark_theme = false;

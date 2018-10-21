@@ -42,6 +42,7 @@ namespace Ciano.Widgets {
         public HeaderBar () {
             this.title = "Ciano";
             this.set_show_close_button (true);
+ this.has_subtitle = false;
 
             this.document_open = new Gtk.Button ();
             this.document_open.set_image (new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR));
@@ -110,7 +111,7 @@ namespace Ciano.Widgets {
 
             var item_preferences = new Gtk.ModelButton ();
             item_preferences.text = (_("Preferences"));
-            item_preferences.activate.connect(() => { icon_settings_clicked (); });
+            item_preferences.activate.connect(() => { message("aaaa"); });
 
             var item_preferences_context = item_preferences.get_style_context ();
             item_preferences_context.add_class ("menuitem");

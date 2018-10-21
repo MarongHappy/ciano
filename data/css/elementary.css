@@ -63,3 +63,7 @@
 .theme-dark {
 	background: @color_dark;
 }
+
+.titlebar {
+    padding: 1px;
+}

@@ -29,20 +29,23 @@ namespace Ciano.Widgets {
         public signal void icon_information_clicked ();
         public signal void icon_settings_clicked ();
         public signal void icon_about_clicked ();
+        public signal void radio_button_color_clicked (int theme);
 
-        public Gtk.Button document_open { get; private set;}
-        public Gtk.Button output_folder { get; private set;}
-        public Gtk.Button start_pause   { get; private set;}
-        public Gtk.Button pause         { get; private set;}
-        public Gtk.Button information   { get; private set;}
-        public Gtk.MenuButton settings  { get; private set;}
+        public Gtk.Button document_open           { get; private set;}
+        public Gtk.Button output_folder           { get; private set;}
+        public Gtk.Button start_pause             { get; private set;}
+        public Gtk.Button pause                   { get; private set;}
+        public Gtk.Button information             { get; private set;}
+        public Gtk.MenuButton settings            { get; private set;}
+        public Gtk.Button button_color_elementary { get; private set;}
+        public Gtk.Button button_color_ciano      { get; private set;}
+        public Gtk.Button button_color_dark       { get; private set;}
 
         private bool start = true;
 
         public HeaderBar () {
             this.title = "Ciano";
             this.set_show_close_button (true);
- this.has_subtitle = false;
 
             this.document_open = new Gtk.Button ();
             this.document_open.set_image (new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR));
@@ -64,33 +67,39 @@ namespace Ciano.Widgets {
             this.information.tooltip_text = (_("Supported Formats"));
             this.information.clicked.connect (() => { icon_information_clicked (); });
 
-            var button_color_elementary = new Gtk.Button ();
-            button_color_elementary.halign = Gtk.Align.CENTER;
-            button_color_elementary.tooltip_text = _("elementary");
-            button_color_elementary.height_request = 32;
-            button_color_elementary.width_request = 32;
+            this.button_color_elementary = new Gtk.Button (); // selection-add.svg | object-select-symbolic | BUTTON
+            this.button_color_elementary.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            this.button_color_elementary.halign = Gtk.Align.CENTER;
+            this.button_color_elementary.tooltip_text = _("elementary");
+            this.button_color_elementary.height_request = 32;
+            this.button_color_elementary.width_request = 32;
+            this.button_color_elementary.clicked.connect(() => { radio_button_color_clicked (2); });
 
-            var button_color_elementary_context = button_color_elementary.get_style_context ();
+            var button_color_elementary_context = this.button_color_elementary.get_style_context ();
             button_color_elementary_context.add_class ("button-theme");
             button_color_elementary_context.add_class ("theme-elementary");
 
-            var button_color_ciano = new Gtk.Button ();
-            button_color_ciano.halign = Gtk.Align.CENTER;
-            button_color_ciano.tooltip_text = _("ciano");
-            button_color_ciano.height_request = 32;
-            button_color_ciano.width_request = 32;
+            this.button_color_ciano = new Gtk.Button ();
+            this.button_color_ciano.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            this.button_color_ciano.halign = Gtk.Align.CENTER;
+            this.button_color_ciano.tooltip_text = _("ciano");
+            this.button_color_ciano.height_request = 32;
+            this.button_color_ciano.width_request = 32;
+            this.button_color_ciano.clicked.connect(() => { radio_button_color_clicked (1); });
 
-            var button_color_ciano_context = button_color_ciano.get_style_context ();
+            var button_color_ciano_context = this.button_color_ciano.get_style_context ();
             button_color_ciano_context.add_class ("button-theme");
             button_color_ciano_context.add_class ("theme-ciano");
 
-            var button_color_dark = new Gtk.Button ();
-            button_color_dark.halign = Gtk.Align.CENTER;
-            button_color_dark.tooltip_text = _("dark");
-            button_color_dark.height_request = 32;
-            button_color_dark.width_request = 32;
+            this.button_color_dark = new Gtk.Button ();
+            this.button_color_dark.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            this.button_color_dark.halign = Gtk.Align.CENTER;
+            this.button_color_dark.tooltip_text = _("dark");
+            this.button_color_dark.height_request = 32;
+            this.button_color_dark.width_request = 32;
+            this.button_color_dark.clicked.connect(() => { radio_button_color_clicked (0); });
 
-            var button_color_dark_context = button_color_dark.get_style_context ();
+            var button_color_dark_context = this.button_color_dark.get_style_context ();
             button_color_dark_context.add_class ("button-theme");
             button_color_dark_context.add_class ("theme-dark");
 
@@ -111,24 +120,26 @@ namespace Ciano.Widgets {
 
             var item_preferences = new Gtk.ModelButton ();
             item_preferences.text = (_("Preferences"));
-            item_preferences.activate.connect(() => { message("aaaa"); });
+            item_preferences.clicked.connect(() => { icon_settings_clicked (); });
 
             var item_preferences_context = item_preferences.get_style_context ();
             item_preferences_context.add_class ("menuitem");
 
             var item_about = new Gtk.ModelButton ();
             item_about.text = (_("About"));
-            item_about.activate.connect(() => { icon_about_clicked (); });
+            item_about.clicked.connect(() => { icon_about_clicked (); });
 
             var item_about_context = item_about.get_style_context ();
             item_about_context.add_class ("menuitem");
 
             var menu_separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
             menu_separator.margin_top = 6;
+            menu_separator.margin_bottom = 6;
 
             var menu_grid = new Gtk.Grid ();
             menu_grid.margin_top = 10;
             menu_grid.margin_bottom = 5;
+            menu_grid.row_spacing = 5;
             menu_grid.column_spacing = 12;
             menu_grid.width_request = 170;
             menu_grid.orientation = Gtk.Orientation.VERTICAL;
@@ -189,6 +200,30 @@ namespace Ciano.Widgets {
                 this.start_pause.tooltip_text = (_("Start all conversions"));
                 this.start_pause.show_all ();
             }
+        }
+
+        public void change_radio_button_selected (int theme) {
+            switch (theme) {
+                case 0:
+                    button_color_dark.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+                    button_color_elementary.image = null;
+                    button_color_ciano.image = null;
+                    break;
+                case 1:
+                    button_color_ciano.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+                    button_color_elementary.image = null;
+                    button_color_dark.image = null;
+                    break;
+                case 2:
+                    button_color_elementary.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+                    button_color_ciano.image = null;
+                    button_color_dark.image = null;
+                    break;
+            }
+
+            button_color_elementary.show_all ();
+            button_color_ciano.show_all ();
+            button_color_dark.show_all ();
         }
     }
 }

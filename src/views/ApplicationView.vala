@@ -45,9 +45,8 @@ namespace Ciano.Views {
             this.get_style_context ().add_class ("window-background-color");
             
             this.begin_event ();
-            this.load_css_provider ();
-
             this.headerbar = new Widgets.HeaderBar ();
+            this.load_css_provider ();
 
             this.headerbar.icon_document_open_clicked.connect (() => { 
                 this.open_dialog_file_chooser ();
@@ -71,6 +70,10 @@ namespace Ciano.Views {
 
             this.headerbar.icon_about_clicked.connect (() => { 
                 DialogFactory.open_dialog (this, DialogEnum.ABOUT);
+            });
+
+            this.headerbar.radio_button_color_clicked.connect ((theme) => {
+                this.load_css_provider (theme);
             });
            
             this.headerbar.set_visible_icons(false);
@@ -104,23 +107,35 @@ namespace Ciano.Views {
             this.show_all ();
         }
 
-        public void load_css_provider () {
+        public void load_css_provider (int? radio_button_value = null) {
             Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
             Gtk.Settings gtk_settings = Gtk.Settings.get_default ();
             Gtk.CssProvider css_provider = new Gtk.CssProvider ();
 
-            switch (settings.theme) {
+            int theme = settings.theme;
+
+            if(radio_button_value != null) {
+                theme = radio_button_value;
+            }
+
+            switch (theme) {
                 case 0:
+                    this.headerbar.change_radio_button_selected (theme);
                     gtk_settings.gtk_application_prefer_dark_theme = true;
                     css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/dark.css");
+                    settings.theme = 0;
                     break;
                 case 1:
+                    this.headerbar.change_radio_button_selected (theme);
                     gtk_settings.gtk_application_prefer_dark_theme = false;
                     css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/ciano.css");
+                    settings.theme = 1;
                     break;
                 case 2:
+                    this.headerbar.change_radio_button_selected (theme);
                     gtk_settings.gtk_application_prefer_dark_theme = false;
                     css_provider.load_from_resource ("com/github/robertsanseries/ciano/css/elementary.css");
+                    settings.theme = 2;
                     break;
             }
 

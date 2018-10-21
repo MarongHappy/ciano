@@ -92,7 +92,7 @@ namespace Ciano.Widgets {
             translators_label.wrap= true;
             translators_label.xalign= 0;
 
-            Gtk.Label copyright_label = new Gtk.Label (_("© 2017-2018 Ciano\n"));
+            Gtk.Label copyright_label = new Gtk.Label (_("Copyright © 2017-2018 Robert San\n"));
             copyright_label.wrap= true;
             copyright_label.xalign= 0;
             copyright_label.selectable= true;

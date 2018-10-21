@@ -70,7 +70,7 @@ namespace Ciano.Widgets {
             this.button_color_elementary = new Gtk.Button (); // selection-add.svg | object-select-symbolic | BUTTON
             this.button_color_elementary.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             this.button_color_elementary.halign = Gtk.Align.CENTER;
-            this.button_color_elementary.tooltip_text = _("elementary");
+            this.button_color_elementary.tooltip_text = _("theme elementary");
             this.button_color_elementary.height_request = 32;
             this.button_color_elementary.width_request = 32;
             this.button_color_elementary.clicked.connect(() => { radio_button_color_clicked (2); });
@@ -82,7 +82,7 @@ namespace Ciano.Widgets {
             this.button_color_ciano = new Gtk.Button ();
             this.button_color_ciano.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             this.button_color_ciano.halign = Gtk.Align.CENTER;
-            this.button_color_ciano.tooltip_text = _("ciano");
+            this.button_color_ciano.tooltip_text = _("theme ciano");
             this.button_color_ciano.height_request = 32;
             this.button_color_ciano.width_request = 32;
             this.button_color_ciano.clicked.connect(() => { radio_button_color_clicked (1); });
@@ -94,7 +94,7 @@ namespace Ciano.Widgets {
             this.button_color_dark = new Gtk.Button ();
             this.button_color_dark.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             this.button_color_dark.halign = Gtk.Align.CENTER;
-            this.button_color_dark.tooltip_text = _("dark");
+            this.button_color_dark.tooltip_text = _("theme dark");
             this.button_color_dark.height_request = 32;
             this.button_color_dark.width_request = 32;
             this.button_color_dark.clicked.connect(() => { radio_button_color_clicked (0); });

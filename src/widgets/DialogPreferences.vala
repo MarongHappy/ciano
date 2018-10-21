@@ -30,8 +30,8 @@ namespace Ciano.Widgets {
             this.resizable = false;
             this.deletable = false;
             this.set_transient_for (parent);
-            this.set_default_size (450, 500);
-            this.set_size_request (450, 500);
+            this.set_default_size (450, 400);
+            this.set_size_request (450, 400);
             this.set_modal (true);
 
             Gtk.Stack stack = new Gtk.Stack ();
@@ -64,31 +64,6 @@ namespace Ciano.Widgets {
             output_folder.selection_changed.connect (() => {
                 settings.output_folder = output_folder.get_file ().get_path ();
             });
-
-            Gtk.ComboBoxText theme = new Gtk.ComboBoxText ();
-            theme.width_request =  170;
-            theme.append_text ("dark");
-            theme.append_text ("default");
-            theme.append_text ("elementary");
-            theme.set_active (settings.theme);
-            theme.changed.connect (() => {
-                settings.theme = theme.get_active ();
-                parent.load_css_provider ();
-            });            
-
-            Gtk.ComboBoxText language = new Gtk.ComboBoxText ();
-            language.width_request =  170;
-            language.append_text ("Chinese  - Simplified");
-            language.append_text ("Dutch");
-            language.append_text ("English");
-            language.append_text ("French");
-            language.append_text ("Lithuanian");
-            language.append_text ("Portuguese - Brazil");
-            language.append_text ("Spanish");
-            language.set_active (settings.language);
-            language.changed.connect (() => {
-                settings.language = language.get_active ();
-            });
             
             Gtk.Switch output_source_file_folder = new Gtk.Switch ();
             settings.schema.bind ("output-source-file-folder", output_source_file_folder, "active", SettingsBindFlags.DEFAULT);
@@ -109,6 +84,9 @@ namespace Ciano.Widgets {
 
             Gtk.Switch error_notify = new Gtk.Switch ();
             settings.schema.bind ("error-notify", error_notify, "active", SettingsBindFlags.DEFAULT);
+
+            Gtk.Switch continue_conversion = new Gtk.Switch ();
+            settings.schema.bind ("continue-conversion", continue_conversion, "active", SettingsBindFlags.DEFAULT);
 
             int row = 1;
 
@@ -136,14 +114,11 @@ namespace Ciano.Widgets {
             Gtk.Label label_error_notify = new Gtk.Label (_("Notify about an error:"));
             add_option (grid, label_error_notify, error_notify, ref row);
 
-            Gtk.Label label_interface = new Gtk.Label (_("Interface:"));
-            add_section (grid, label_interface, ref row);
+            Gtk.Label work_area_label = new Gtk.Label (_("Work area integration:"));
+            add_section (grid, work_area_label, ref row);
 
-            Gtk.Label label_theme = new Gtk.Label (_("Theme:"));
-            add_option (grid, label_theme, theme, ref row);
-
-            //Gtk.Label label_language = new Gtk.Label (_("Language:"));
-            //add_option (grid, label_language, language, ref row);
+            Gtk.Label continue_conversion_label = new Gtk.Label (_("Continue conversion when closed:"));
+            add_option (grid, continue_conversion_label, continue_conversion, ref row);
 
             return grid;
         }
@@ -173,9 +148,6 @@ namespace Ciano.Widgets {
 
             Gtk.Switch off_computer = new Gtk.Switch ();
             settings.schema.bind ("off-computer", off_computer, "active", SettingsBindFlags.DEFAULT);
-
-            Gtk.Switch continue_conversion = new Gtk.Switch ();
-            settings.schema.bind ("continue-conversion", continue_conversion, "active", SettingsBindFlags.DEFAULT);
             
             int row = 1;
 
@@ -208,12 +180,6 @@ namespace Ciano.Widgets {
 
             Gtk.Label off_computer_label = new Gtk.Label (_("Turn off the computer:"));
             add_option (grid, off_computer_label, off_computer, ref row);
-
-            Gtk.Label work_area_label = new Gtk.Label (_("Work area integration:"));
-            add_section (grid, work_area_label, ref row);
-
-            Gtk.Label continue_conversion_label = new Gtk.Label (_("Continue conversion when closed:"));
-            add_option (grid, continue_conversion_label, continue_conversion, ref row);
 
             return grid;
         }

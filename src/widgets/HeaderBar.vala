@@ -71,8 +71,8 @@ namespace Ciano.Widgets {
             this.button_color_elementary.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             this.button_color_elementary.halign = Gtk.Align.CENTER;
             this.button_color_elementary.tooltip_text = _("theme elementary");
-            this.button_color_elementary.height_request = 32;
-            this.button_color_elementary.width_request = 32;
+            this.button_color_elementary.height_request = 35;
+            this.button_color_elementary.width_request = 35;
             this.button_color_elementary.clicked.connect(() => { radio_button_color_clicked (2); });
 
             var button_color_elementary_context = this.button_color_elementary.get_style_context ();
@@ -83,8 +83,8 @@ namespace Ciano.Widgets {
             this.button_color_ciano.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             this.button_color_ciano.halign = Gtk.Align.CENTER;
             this.button_color_ciano.tooltip_text = _("theme ciano");
-            this.button_color_ciano.height_request = 32;
-            this.button_color_ciano.width_request = 32;
+            this.button_color_ciano.height_request = 35;
+            this.button_color_ciano.width_request = 35;
             this.button_color_ciano.clicked.connect(() => { radio_button_color_clicked (1); });
 
             var button_color_ciano_context = this.button_color_ciano.get_style_context ();
@@ -95,8 +95,8 @@ namespace Ciano.Widgets {
             this.button_color_dark.image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             this.button_color_dark.halign = Gtk.Align.CENTER;
             this.button_color_dark.tooltip_text = _("theme dark");
-            this.button_color_dark.height_request = 32;
-            this.button_color_dark.width_request = 32;
+            this.button_color_dark.height_request = 35;
+            this.button_color_dark.width_request = 35;
             this.button_color_dark.clicked.connect(() => { radio_button_color_clicked (0); });
 
             var button_color_dark_context = this.button_color_dark.get_style_context ();
@@ -108,8 +108,8 @@ namespace Ciano.Widgets {
             box_color.pack_start (button_color_ciano, true, true, 0);
             box_color.pack_start (button_color_dark, true, true, 0);
             box_color.width_request = 200;
-            box_color.margin_top = 10;
-            box_color.margin_bottom = 6;
+            box_color.margin_top = 5;
+            box_color.margin_bottom = 3;
 
             var focusmode_button = new Gtk.ToggleButton.with_label ((_("Focus Mode")));
             focusmode_button.set_image (new Gtk.Image.from_icon_name ("zoom-fit-best-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
@@ -136,6 +136,14 @@ namespace Ciano.Widgets {
             menu_separator.margin_top = 6;
             menu_separator.margin_bottom = 6;
 
+            var list_grid = new Gtk.Grid ();
+            list_grid.row_spacing = 5;
+            list_grid.column_spacing = 12;
+            list_grid.width_request = 200;
+            list_grid.orientation = Gtk.Orientation.VERTICAL;
+            list_grid.add (item_preferences);
+            list_grid.add (item_about);
+
             var menu_grid = new Gtk.Grid ();
             menu_grid.margin_top = 10;
             menu_grid.margin_bottom = 5;
@@ -146,8 +154,9 @@ namespace Ciano.Widgets {
             menu_grid.add (focusmode_button);
             menu_grid.add (box_color);
             menu_grid.add (menu_separator);
-            menu_grid.add (item_preferences);
-            menu_grid.add (item_about);
+            menu_grid.add (list_grid);
+            //menu_grid.add (item_preferences);
+            //menu_grid.add (item_about);
             menu_grid.show_all ();
 
             var style_popover = new Gtk.Popover (null);

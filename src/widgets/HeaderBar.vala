@@ -129,8 +129,10 @@ namespace Ciano.Widgets {
             focusmode_button.toggled.connect (() => {
     			if (focusmode_button.active) {
     				settings.focus_mode = true;
+                    change_focus_mode_button_selected ();
     			} else {
     				settings.focus_mode = false;
+                    change_focus_mode_button_selected ();
     			}
 
             });
@@ -251,5 +253,29 @@ namespace Ciano.Widgets {
             button_color_ciano.show_all ();
             button_color_dark.show_all ();
         }
+
+        public void change_focus_mode_button_selected () {
+            Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
+
+            if (settings.focus_mode) {
+                this.document_open.set_image (new Gtk.Image.from_icon_name ("document-open-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
+                this.output_folder.set_image (new Gtk.Image.from_icon_name ("folder-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
+                this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
+                this.pause.set_image (new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
+                this.information.set_image (new Gtk.Image.from_icon_name ("dialog-information-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+                this.settings.image = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+this.show_all();
+            } else {
+                this.document_open.set_image (new Gtk.Image.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR));
+                this.output_folder.set_image (new Gtk.Image.from_icon_name ("folder-saved-search", Gtk.IconSize.LARGE_TOOLBAR));
+                this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
+                this.pause.set_image (new Gtk.Image.from_icon_name ("media-playback-pause", Gtk.IconSize.LARGE_TOOLBAR));
+                this.information.set_image (new Gtk.Image.from_icon_name ("dialog-information", Gtk.IconSize.LARGE_TOOLBAR));
+                this.settings.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+this.show_all();
+           }
+        }
+
+
     }
 }

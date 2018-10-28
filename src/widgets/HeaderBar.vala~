@@ -118,23 +118,6 @@ namespace Ciano.Widgets {
             focusmode_button.margin_left = 8;
             focusmode_button.margin_right = 8;
 
-            Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
-
-             if (settings.focus_mode == false) {
-                focusmode_button.set_active (false);
-            } else {
-                focusmode_button.set_active (settings.focus_mode);
-            }
-
-            focusmode_button.toggled.connect (() => {
-    			if (focusmode_button.active) {
-    				settings.focus_mode = true;
-    			} else {
-    				settings.focus_mode = false;
-    			}
-
-            });
-
             var item_preferences = new Gtk.ModelButton ();
             item_preferences.text = (_("Preferences"));
             item_preferences.clicked.connect(() => { icon_settings_clicked (); });

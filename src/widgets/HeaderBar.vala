@@ -40,6 +40,7 @@ namespace Ciano.Widgets {
         public Gtk.Button button_color_elementary { get; private set;}
         public Gtk.Button button_color_ciano      { get; private set;}
         public Gtk.Button button_color_dark       { get; private set;}
+        public Gtk.ToggleButton focusmode_button  { get; private set;}
 
         private bool start = true;
 
@@ -111,23 +112,23 @@ namespace Ciano.Widgets {
             box_color.margin_top = 5;
             box_color.margin_bottom = 3;
 
-            var focusmode_button = new Gtk.ToggleButton.with_label ((_("Focus Mode")));
-            focusmode_button.set_image (new Gtk.Image.from_icon_name ("zoom-fit-best-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
-            focusmode_button.set_always_show_image (true);
-            focusmode_button.tooltip_text = _("Enter focus mode");
-            focusmode_button.margin_left = 8;
-            focusmode_button.margin_right = 8;
+            this.focusmode_button = new Gtk.ToggleButton.with_label ((_("Focus Mode")));
+            this.focusmode_button.set_image (new Gtk.Image.from_icon_name ("zoom-fit-best-symbolic", Gtk.IconSize.SMALL_TOOLBAR));
+            this.focusmode_button.set_always_show_image (true);
+            this.focusmode_button.tooltip_text = _("Enter focus mode");
+            this.focusmode_button.margin_left = 8;
+            this.focusmode_button.margin_right = 8;
 
             Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
 
              if (settings.focus_mode == false) {
-                focusmode_button.set_active (false);
+                this.focusmode_button.set_active (false);
             } else {
-                focusmode_button.set_active (settings.focus_mode);
+                this.focusmode_button.set_active (settings.focus_mode);
             }
 
-            focusmode_button.toggled.connect (() => {
-    			if (focusmode_button.active) {
+            this.focusmode_button.toggled.connect (() => {
+    			if (this.focusmode_button.active) {
     				settings.focus_mode = true;
                     change_focus_mode_button_selected ();
     			} else {
@@ -217,17 +218,33 @@ namespace Ciano.Widgets {
         }
 
         public void change_icon_start_pause () {
+
+            Ciano.Services.Settings settings = Ciano.Services.Settings.get_instance ();
+
             if(this.start) {
                 this.start = false;
-                this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-pause", Gtk.IconSize.SMALL_TOOLBAR));
+                
+                if (!this.focusmode_button.active) {
+                    this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-pause", Gtk.IconSize.SMALL_TOOLBAR));
+			    } else {
+                    this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.SMALL_TOOLBAR));				    
+                }
+			
                 this.start_pause.tooltip_text = (_("Pause all conversions"));
                 this.start_pause.show_all ();
             } else {
                 this.start = true;
-                this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
+                if (!this.focusmode_button.active) {
+                    this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-start", Gtk.IconSize.SMALL_TOOLBAR));
+			    } else {
+                    this.start_pause.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.SMALL_TOOLBAR));				    
+                }
+                
                 this.start_pause.tooltip_text = (_("Start all conversions"));
                 this.start_pause.show_all ();
             }
+
+            
         }
 
         public void change_radio_button_selected (int theme) {

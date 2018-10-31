@@ -8,3 +8,4 @@ debian/*
 language/*
 com.github.robertsanseries.ciano.json
 elementary-theme.patch
+*~

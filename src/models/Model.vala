@@ -17,12 +17,22 @@
  * Boston, MA 02110-1301 USA
  */
 
-namespace Ciano.Controllers {
+using Ciano.Controllers;
+using Ciano.Views;
 
-    public class ActionController : Controller {
+namespace Ciano.Models {
 
-        public ActionController () {
+	public abstract class Model : IModel {
+	    
+	    protected Controller controller;
+        protected View view;
 
+       public void set_controller (ref Controller controller) {
+            this.controller = controller;
         }
-    }
+
+        public void set_view (ref View view) {
+            this.view = view;
+        }
+	}
 }

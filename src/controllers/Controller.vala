@@ -17,12 +17,30 @@
  * Boston, MA 02110-1301 USA
  */
 
+using Ciano.Models;
+using Ciano.Views;
+
 namespace Ciano.Controllers {
 
-    public class ActionController : Controller {
+	public abstract class Controller : IController {
+	    
+	    protected Model model;
+        protected View view;
 
-        public ActionController () {
-
+        public void add_action (string text) {
+            GLib.message (text);
         }
-    }
+
+        public void remove_action (string text) {
+            GLib.message (text);
+        }
+
+        public void set_model (ref Model model) {
+            this.model = model;
+        }
+
+        public void set_view (ref View view) {
+            this.view = view;
+        }
+	}
 }

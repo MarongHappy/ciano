@@ -181,6 +181,8 @@ namespace Ciano.Views {
                         this.conversion_list.add_archive ("media-playback-start-symbolic", builder.get_archive ());
                         //this.conversion_list.add_archive ("media-playback-pause-symbolic", builder.get_archive ());
                         //this.conversion_list.add_archive ("process-completed", builder.get_archive ());
+                        
+                        this.conversion_list.show_all ();
 
                        // this.action 
                         var file         = File.new_for_uri (uri);

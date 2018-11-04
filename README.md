@@ -3,9 +3,14 @@
         <img width="64" height="64" src="https://github.com/robertsanseries/ciano/blob/master/data/images/com.github.robertsanseries.ciano.png" alt="Icon">Ciano</h1>
   <h3 align="center">A multimedia file converter focused on simplicity.</h3>
 
-[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.robertsanseries.ciano)
-
-<a href="https://flathub.org/apps/details/com.github.robertsanseries.ciano"><img src="https://flathub.org/assets/badges/flathub-badge-i-en.svg" width="160px" alt="Get it from Flathub!" style="float: left"></a>
+<p align="center">
+    <a href="https://appcenter.elementary.io/com.github.robertsanseries.ciano">
+        <img src="https://appcenter.elementary.io/badge.svg" width="160px" alt="Get it on AppCenter">
+    </a> &nbsp;
+    <a href="https://flathub.org/apps/details/com.github.robertsanseries.ciano">
+        <img src="https://flathub.org/assets/badges/flathub-badge-i-en.svg" width="160px" alt="Get it from Flathub!">
+    </a>
+</p>
 
 </div>
 

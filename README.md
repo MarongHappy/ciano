@@ -5,7 +5,7 @@
 
 [![Get it on AppCenter](https://appcenter.elementary.io/badge.svg)](https://appcenter.elementary.io/com.github.robertsanseries.ciano)
 
-<a href="https://flathub.org/apps/details/com.github.robertsanseries.ciano"><img src="https://flathub.org/assets/badges/flathub-badge-i-en.svg" width="160px" alt="Get it from Flathub!" align="right"></a>
+<a href="https://flathub.org/apps/details/com.github.robertsanseries.ciano"><img src="https://flathub.org/assets/badges/flathub-badge-i-en.svg" width="160px" alt="Get it from Flathub!" style="float: left"></a>
 
 </div>
 

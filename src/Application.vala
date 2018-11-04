@@ -18,7 +18,7 @@
  */
 
 using Ciano.Controllers;
-using Ciano.Models.DB;
+using Ciano.Database;
 using Ciano.Views;
 
 namespace Ciano {

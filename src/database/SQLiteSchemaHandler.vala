@@ -19,7 +19,7 @@
 
 using Ciano.Helpers;
 
-namespace Ciano.Models.DB {
+namespace Ciano.Database {
 
     public class SQLiteSchemaHandler {
 

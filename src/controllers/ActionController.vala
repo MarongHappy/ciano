@@ -17,6 +17,8 @@
  * Boston, MA 02110-1301 USA
  */
 
+using Alvane.Controllers;
+
 namespace Ciano.Controllers {
 
     public class ActionController : Controller {

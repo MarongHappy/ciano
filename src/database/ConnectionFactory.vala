@@ -17,22 +17,23 @@
  * Boston, MA 02110-1301 USA
  */
 
-using Ciano.Controllers;
-using Ciano.Models;
+using Ciano.Helpers;
 
-namespace Ciano.Views {
+namespace Ciano.Database {
 
-	public abstract class View : IView {
+    public class ConnectionFactory {
 
-		protected Controller controller;
-		protected Model model;
-
-	   	public void set_controller (ref Controller controller) {
-	    	this.controller = controller;
-	    }
-
-	    public void set_model (ref Model model) {
-	    	this.model = model;
-	    }
-	}
+        public static Gda.Connection? get_connection () {
+            try {
+                return Gda.Connection.open_from_string (
+                    SqliteHelper.get_provider (),
+                    SqliteHelper.get_hostname (),
+                    null,
+                    Gda.ConnectionOptions.NONE
+                );
+            } catch (Error e) {
+                GLib.error (e.message);
+            }
+        }
+    }
 }

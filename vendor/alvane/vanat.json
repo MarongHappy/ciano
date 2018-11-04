@@ -1,0 +1,15 @@
+{
+    "name": "valley-framework/framework",
+    "description": "The Valley Framework.",
+    "version": "0.1.0",
+    "keywords": ["framework", "valley"],
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robert San",
+            "email": "robertsanseries@gmail.com",
+        }
+    ],
+    "require": { }
+}
